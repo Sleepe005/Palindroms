@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/kholo/Documents/Programming/university/C/Palindroms/main'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _printMenu, symObjAddr: 0x0, symBinAddr: 0x100003A9C, symSize: 0x100 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _printMenu, symObjAddr: 0x0, symBinAddr: 0x100003A9C, symSize: 0x100 }
+  - { offsetInCU: 0x8F, offset: 0x8F, size: 0x8, addend: 0x0, symName: _changeStr, symObjAddr: 0x100, symBinAddr: 0x100003B9C, symSize: 0xE0 }
+  - { offsetInCU: 0xF9, offset: 0xF9, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x1E0, symBinAddr: 0x100003C7C, symSize: 0x1F8 }
+...
