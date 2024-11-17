@@ -2,8 +2,9 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/kholo/Documents/Programming/university/C/Palindroms/main'
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _printMenu, symObjAddr: 0x0, symBinAddr: 0x100003A9C, symSize: 0x100 }
-  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _printMenu, symObjAddr: 0x0, symBinAddr: 0x100003A9C, symSize: 0x100 }
-  - { offsetInCU: 0x8F, offset: 0x8F, size: 0x8, addend: 0x0, symName: _changeStr, symObjAddr: 0x100, symBinAddr: 0x100003B9C, symSize: 0xE0 }
-  - { offsetInCU: 0xF9, offset: 0xF9, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x1E0, symBinAddr: 0x100003C7C, symSize: 0x1F8 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _printMenu, symObjAddr: 0x0, symBinAddr: 0x100003838, symSize: 0x100 }
+  - { offsetInCU: 0x48, offset: 0x48, size: 0x8, addend: 0x0, symName: _printMenu, symObjAddr: 0x0, symBinAddr: 0x100003838, symSize: 0x100 }
+  - { offsetInCU: 0x96, offset: 0x96, size: 0x8, addend: 0x0, symName: _moveStrToRight, symObjAddr: 0x100, symBinAddr: 0x100003938, symSize: 0xD0 }
+  - { offsetInCU: 0xF2, offset: 0xF2, size: 0x8, addend: 0x0, symName: _changeStr, symObjAddr: 0x1D0, symBinAddr: 0x100003A08, symSize: 0x2A4 }
+  - { offsetInCU: 0x15C, offset: 0x15C, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x474, symBinAddr: 0x100003CAC, symSize: 0x1AC }
 ...

@@ -1,9 +1,8 @@
 #include <ncurses.h>
 #include <locale.h>
 #include <string.h>
-// #include <stdbool.h>
 
-#define STR_SIZE 20
+#define STR_SIZE 100
 
 void printMenu(int cursePosition){
     char menu[2][75] = {
@@ -22,9 +21,30 @@ void printMenu(int cursePosition){
     printw("\nВыход - esc x2\n");
 }
 
-void changeStr(char *str, int cursePos){
+void moveStrToRight(char *str, int *startPos, int ch){
+    if(strlen(str) == STR_SIZE){return;}
+
+    for(int i = strlen(str)-1; i >= *startPos; i--){
+        str[i+1] = str[i];
+    }
+    str[*startPos] = ch;
+    (*startPos)++;
+}
+
+void moveStrToLeft(char *str, int *startPos){
+    if(*startPos == 0){return;}
+
+    for(int i = *startPos - 1; i < strlen(str)-1; i++){
+        str[i] = str[i+1];
+    }
+    str[strlen(str) - 1] = '\0';
+    (*startPos)--;
+}
+
+void changeStr(char *str){
     init_pair(1, COLOR_BLACK, COLOR_WHITE);
 
+    int cursePos = 0;
     bool isExit = false;
     int key;
     clear();
@@ -44,7 +64,6 @@ void changeStr(char *str, int cursePos){
 
 
         key = getch();
-        // insert 
         if(key == 27){
             key = getch();
             if(key == 91){
@@ -60,12 +79,13 @@ void changeStr(char *str, int cursePos){
                 }
             }
         }
-        if(key >= 32 && key <= 126){
-
+        // insert 
+        else if(key >= 32 && key <= 126){
+            moveStrToRight(str, &cursePos, key);
         }
         // delete
-        if(key == 127){
-
+        else if(key == 127){
+            moveStrToLeft(str, &cursePos);
         }
 
         clear();
@@ -77,11 +97,11 @@ int main(){
     initscr();
     start_color();
 
-    char str[STR_SIZE] = "";
+    char str[STR_SIZE+1] = "";
     // for(int i = 0; i < STR_SIZE-1; i++){
     //     str[i]='.';
     // }
-    int strCursePos = 0;
+    // int strCursePos = 0;
 
     int key;
     int menuCursePos = 1;
@@ -112,7 +132,7 @@ int main(){
                 isExit = true;
             }
         }else if(key == 49){
-            changeStr(str, strCursePos);
+            changeStr(str);
         }
 
         clear();
