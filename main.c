@@ -51,6 +51,8 @@ void changeStr(char *str){
     while(!isExit){
         // Выводим строку
         clear();
+        printw("Для выхода два раза нажмите esc\n\n");
+
         for(int i = 0; i < strlen(str); i++){
             if(i == cursePos){
                 attron(COLOR_PAIR(1));
@@ -60,7 +62,6 @@ void changeStr(char *str){
                 printw("%c", str[i]);
             }
         }
-        printw("\n");
 
 
         key = getch();
@@ -78,6 +79,9 @@ void changeStr(char *str){
                     }
                 }
             }
+            if(key == 27){
+                isExit = true;
+            }
         }
         // insert 
         else if(key >= 32 && key <= 126){
@@ -92,16 +96,58 @@ void changeStr(char *str){
     }
 }
 
+bool isPalindorm(const char str[STR_SIZE+1]){
+    int iterCount = strlen(str) / 2;
+    if(strlen(str) % 2 != 0){
+        iterCount++;
+    }
+
+    bool isPal = true;
+    for(int i = 0; i < iterCount; i++){
+        if(str[i] != str[strlen(str)-i-1]){
+            isPal = false;
+        }
+    }
+
+    return isPal;
+}
+
+void printPalindorms(const char str[STR_SIZE+1]){
+    clear();
+    if(strlen(str) == 0){
+        printw("Строка пустая. Палиндромы отсутствуют :(");
+    }else{
+        int palindormsCount = 0;
+
+        for(int i = 0; i < strlen(str)-2; i++){
+            for(int j = i+2; j < strlen(str); j++){
+                char substr[STR_SIZE+1];
+                strncpy(substr, str+i, j-i+1);
+
+                if(isPalindorm(substr)){
+                    printw("%s\n", substr);
+                    palindormsCount++;
+                }
+
+                memset(substr, '\0', sizeof(substr));
+            }
+        }
+
+        if(!palindormsCount){
+            printw("Палиндромы не найдены");
+        }
+    }
+
+    printw("\n\nДля выхода в главное меню нажмите любую кнопку\n");
+    getch();
+}
+
 int main(){
     setlocale(LC_ALL, "");
     initscr();
     start_color();
 
     char str[STR_SIZE+1] = "";
-    // for(int i = 0; i < STR_SIZE-1; i++){
-    //     str[i]='.';
-    // }
-    // int strCursePos = 0;
 
     int key;
     int menuCursePos = 1;
@@ -133,6 +179,10 @@ int main(){
             }
         }else if(key == 49){
             changeStr(str);
+        }else if(key == 50){
+            printPalindorms(str);
+        }else if(key == 10){
+            if(menuCursePos == 1){changeStr(str);}
         }
 
         clear();
